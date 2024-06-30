@@ -221,3 +221,24 @@ const addWelcomeDoc = (data: DocData[]) => {
     allUserDocs.push(welcomeDoc);
     saveToLocalStorage(allUserDocs);
 };
+
+/**
+ * This function loads a document.
+ * @param {number} docIndex - The index of the document to be loaded.
+ */
+const loadDocument = (docIndex: number): void => {
+    try {
+        const allUserDocs: UserDoc[] = loadFromLocalStorage();
+        const currentDoc: UserDoc = allUserDocs[docIndex];
+        if (currentDoc) {
+            markdownContent.value = currentDoc.content;
+            docName.value = currentDoc.docName;
+            showMarkedContent();
+            docName.focus();
+        }
+    } catch (error) {
+        console.error('Error loading document:', error);
+    }
+};
+
+(window as any).loadDocument = loadDocument;
