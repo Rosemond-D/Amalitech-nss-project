@@ -303,3 +303,13 @@ const fetchData = async (): Promise<void> => {
 }
 
 fetchData().catch(error => console.error("Error in fetchData:", error));
+
+/**
+ * This function gets the current date.
+ * @returns {string} The current date.
+ */
+export const getDate = (): string => {
+    const month: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let createDate: Date = new Date();
+    return `${createDate.getDate()} ${month[createDate.getMonth()]} ${createDate.getFullYear()}`;
+}
