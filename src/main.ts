@@ -137,3 +137,11 @@ const showMarkedContent = (): void => {
             {USE_PROFILES: {html: true}});
     }
 }
+
+/**
+ * This function resizes the textarea to fit its content.
+ */
+const resizeTextArea = (): void => {
+    markdownContent.style.height = "";
+    markdownContent.style.height = markdownContent.scrollHeight + 3 + "px";
+}
