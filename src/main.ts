@@ -81,3 +81,13 @@ const mediaQueryDarkMode: MediaQueryList = window.matchMedia('(prefers-color-sch
 if (mediaQueryDarkMode && mediaQueryDarkMode.matches) {
     switchToDarkTheme();
 }
+
+/**
+ * This section of the code handles the navigation functionality.
+ * It adds an event listener for 'click' event on the menuIcon.
+ */
+const menuIcon: HTMLElement = document.querySelector('#menu-icon') as HTMLElement;
+const menuMainContainer: HTMLElement = document.querySelector('#side-nav') as HTMLElement;
+const menuUl: HTMLElement = document.querySelector('#nav-ul') as HTMLElement;
+const btnAddNewDoc: HTMLElement = document.getElementById('add-new-document') as HTMLElement;
+
