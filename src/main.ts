@@ -145,3 +145,8 @@ const resizeTextArea = (): void => {
     markdownContent.style.height = "";
     markdownContent.style.height = markdownContent.scrollHeight + 3 + "px";
 }
+
+markdownContent.addEventListener('input', function () {
+    resizeTextArea();
+    showMarkedContent();
+});
