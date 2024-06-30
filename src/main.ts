@@ -352,3 +352,20 @@ btnAddNewDoc.addEventListener('click', (): void => {
     }
     docName.focus();
 })
+
+/**
+ * This section of the code handles the saving of changes to the documents.
+ * It adds an event listener for 'click' event on the 'save-changes' button.
+ */
+document.getElementById('save-changes')!.addEventListener('click', () => {
+    // Check if there are any documents to save
+    if (localStorage.getItem('allUserDocs') === null || localStorage.getItem('allUserDocs') === '[]') {
+        alert('Please create your first document to save')
+    } else {
+        // Get data from local storage and update the content of the current document
+        allUserDocs = JSON.parse(localStorage.getItem('allUserDocs')!);
+        allUserDocs[currentIndex].content = markdownContent.value;
+        // Save the updated documents back to local storage
+        localStorage.setItem('allUserDocs', JSON.stringify(allUserDocs));
+    }
+})
