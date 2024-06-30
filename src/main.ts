@@ -199,3 +199,11 @@ const localStorageKey: "allUserDocs" = 'allUserDocs';
 const saveToLocalStorage = (docs: UserDoc[]): void => {
     localStorage.setItem(localStorageKey, JSON.stringify(docs));
 };
+
+/**
+ * This function loads the documents from Local Storage.
+ * @returns {UserDoc[]} The loaded documents.
+ */
+const loadFromLocalStorage = (): UserDoc[] => {
+    return JSON.parse(localStorage.getItem(localStorageKey) || '[]');
+};
