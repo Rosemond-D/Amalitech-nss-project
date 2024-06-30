@@ -91,3 +91,28 @@ const menuMainContainer: HTMLElement = document.querySelector('#side-nav') as HT
 const menuUl: HTMLElement = document.querySelector('#nav-ul') as HTMLElement;
 const btnAddNewDoc: HTMLElement = document.getElementById('add-new-document') as HTMLElement;
 
+/**
+ * This function closes the main menu.
+ */
+const closeMainMenu = (): void => {
+    menuMainContainer.classList.remove('active-side-menu');
+    menuIcon.setAttribute('aria-expanded', "false");
+    menuIcon.focus();
+}
+
+/**
+ * This function opens the main menu.
+ */
+const openMainMenu = (): void => {
+    menuIcon.addEventListener('click', () => {
+        if (menuIcon.getAttribute('aria-expanded') === 'false') {
+            menuMainContainer.classList.add('active-side-menu');
+            menuIcon.setAttribute('aria-expanded', "true");
+            btnAddNewDoc.focus();
+        } else {
+            closeMainMenu();
+        }
+    });
+}
+
+openMainMenu();
