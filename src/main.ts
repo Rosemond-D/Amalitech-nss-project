@@ -207,3 +207,17 @@ const saveToLocalStorage = (docs: UserDoc[]): void => {
 const loadFromLocalStorage = (): UserDoc[] => {
     return JSON.parse(localStorage.getItem(localStorageKey) || '[]');
 };
+
+/**
+ * This function adds a welcome document.
+ * @param {DocData[]} data - The data to be added.
+ */
+const addWelcomeDoc = (data: DocData[]) => {
+    const welcomeDoc: UserDoc = {
+        date: data[0].createdAt,
+        docName: data[0].name,
+        content: data[0].content,
+    };
+    allUserDocs.push(welcomeDoc);
+    saveToLocalStorage(allUserDocs);
+};
