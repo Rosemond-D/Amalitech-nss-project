@@ -126,3 +126,14 @@ const markdownContent: HTMLTextAreaElement = document.getElementById('markdown-i
     labelDOcName: HTMLLabelElement = document.querySelector('label[for="doc-name"]') as HTMLLabelElement,
     docName: HTMLInputElement = document.getElementById('doc-name') as HTMLInputElement;
 
+/**
+ * This function shows the marked content.
+ * It converts the markdown content to HTML, sanitizes it and displays it.
+ */
+const showMarkedContent = (): void => {
+    const htmlContent: string | Promise<string> = marked.parse(markdownContent.value);
+    if (typeof htmlContent === 'string') {
+        htmlPreview.innerHTML = DOMPurify.sanitize(htmlContent,
+            {USE_PROFILES: {html: true}});
+    }
+}
