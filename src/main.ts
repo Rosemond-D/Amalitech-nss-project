@@ -369,3 +369,18 @@ document.getElementById('save-changes')!.addEventListener('click', () => {
         localStorage.setItem('allUserDocs', JSON.stringify(allUserDocs));
     }
 })
+
+/**
+ * This section of the code handles the changing of document name.
+ * It adds an event listener for 'change' event on the 'docName' input field.
+ */
+const data = {}; // Declare the 'data' variable
+docName.addEventListener('change', () => {
+    // Get data from local storage and update the name of the current document
+    allUserDocs = JSON.parse(localStorage.getItem('allUserDocs')!);
+    allUserDocs[currentIndex].docName = docName.value;
+    // Save the updated documents back to local storage
+    localStorage.setItem('allUserDocs', JSON.stringify(allUserDocs));
+    // Repopulate the list of documents
+    populateExistingDocs(data);
+})
