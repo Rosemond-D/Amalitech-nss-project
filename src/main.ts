@@ -313,3 +313,42 @@ export const getDate = (): string => {
     let createDate: Date = new Date();
     return `${createDate.getDate()} ${month[createDate.getMonth()]} ${createDate.getFullYear()}`;
 }
+
+/**
+ * This function adds a new document.
+ * It adds an event listener for 'click' event on the 'add-new-document' button.
+ */
+btnAddNewDoc.addEventListener('click', (): void => {
+    markdownContent.value = '';
+    htmlPreview.innerHTML = '';
+
+    let dateCreated: string = getDate();
+
+    const userMarkdown: UserDoc = {
+        date: dateCreated,
+        docName: "untitled-1.md",
+        content: ""
+    };
+
+    if (labelDOcName.classList.contains('hide')) {
+        labelDOcName.classList.remove('hide');
+    }
+
+    // Check if some Data already exists
+    const data = {}; // Declare the 'data' variable
+    if (localStorage.getItem('allUserDocs') === null) {
+        // push first item
+        allUserDocs.push(userMarkdown);
+        localStorage.setItem('allUserDocs', JSON.stringify(allUserDocs));
+        populateExistingDocs(data); // Pass the 'data' variable as an argument
+    } else {
+        // get data from storage and then push new entry
+        allUserDocs = JSON.parse(localStorage.getItem('allUserDocs')!);
+        userMarkdown.docName = `untitled-${allUserDocs.length + 1}.md`;
+        allUserDocs.push(userMarkdown);
+        localStorage.setItem('allUserDocs', JSON.stringify(allUserDocs));
+        currentIndex = allUserDocs.length - 1;
+        populateExistingDocs(data); // Pass the 'data' variable as an argument
+    }
+    docName.focus();
+})
