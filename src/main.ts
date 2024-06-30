@@ -285,3 +285,21 @@ const populateExistingDocs = (data: DocData[] | any): void => {
         console.error('Error populating documents:', error);
     }
 };
+
+/**
+ * This function fetches data from a JSON file.
+ */
+const fetchData = async (): Promise<void> => {
+    const response: Response = await fetch(`/data.json?v=1711534682`)
+
+    if (!response.ok) {
+        console.log("Could not fetch resource");
+        return;
+    }
+
+    const data = await response.json();
+
+    populateExistingDocs(data);
+}
+
+fetchData().catch(error => console.error("Error in fetchData:", error));
