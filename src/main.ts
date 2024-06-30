@@ -384,3 +384,56 @@ docName.addEventListener('change', () => {
     // Repopulate the list of documents
     populateExistingDocs(data);
 })
+
+/**
+ * This function deletes a document from the list of documents.
+ */
+const deleteDocument = (): void => {
+    // Get data from local storage
+    allUserDocs = JSON.parse(localStorage.getItem('allUserDocs')!);
+    // Remove the current document from the list
+    allUserDocs.splice(currentIndex, 1);
+    // Save the updated list back to local storage
+    localStorage.setItem('allUserDocs', JSON.stringify(allUserDocs));
+    // Reset the current index
+    currentIndex = 0;
+}
+
+/**
+ * This section of the code handles the deletion of documents.
+ * It adds an event listener for 'click' event on the 'delete-icon' button.
+ */
+const deleteAlert: HTMLDialogElement = document.getElementById('alert-delete') as HTMLDialogElement,
+    deleteTitle: HTMLElement = document.getElementById('alert-delete-title') as HTMLElement;
+
+document.getElementById('delete-icon')!.addEventListener('click', () => {
+    // Check if there are any documents to delete
+    if (allUserDocs.length !== 0) {
+        // Show the delete confirmation dialog
+        deleteAlert.showModal();
+        // Focus the screen reader on the title of the dialog
+        deleteTitle.focus();
+    }
+})
+
+/**
+ * This section of the code handles the confirmation of deletion.
+ * It adds an event listener for 'click' event on the 'confirm-delete-btn' button.
+ */
+document.getElementById('confirm-delete-btn')!.addEventListener('click', () => {
+    // Delete the current document
+    deleteDocument();
+    // Repopulate the list of documents
+    populateExistingDocs({});
+    // Close the delete confirmation dialog
+    deleteAlert.close();
+})
+
+/**
+ * This section of the code handles the cancellation of deletion.
+ * It adds an event listener for 'click' event on the 'close-alert-delete' button.
+ */
+document.getElementById('close-alert-delete')!.addEventListener('click', () => {
+    // Close the delete confirmation dialog
+    deleteAlert.close();
+})
