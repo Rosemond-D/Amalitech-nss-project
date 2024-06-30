@@ -242,3 +242,46 @@ const loadDocument = (docIndex: number): void => {
 };
 
 (window as any).loadDocument = loadDocument;
+
+/**
+ * This function populates the existing documents.
+ * @param {DocData[] | any} data - The data to be populated.
+ */
+const populateExistingDocs = (data: DocData[] | any): void => {
+    try {
+        allUserDocs = loadFromLocalStorage();
+        menuUl.innerHTML = '';
+
+        const renderDocList = (docs: UserDoc[]) => {
+            docs.forEach((doc: UserDoc, i: number) => {
+                menuUl.innerHTML += `
+          <li><a href="#" class="created-doc" id="doc-${i}" onclick="loadDocument(${i}); event.preventDefault();">
+            <span class="date-doc-created">${doc.date}</span>
+            <span id="input-name-${i}" class="name-doc-created">${doc.docName}</span>
+          </a></li>
+        `;
+            });
+        };
+
+        if (allUserDocs.length > 0) {
+            renderDocList(allUserDocs);
+            const currentDoc: UserDoc = allUserDocs[currentIndex];
+            if (currentDoc) {
+                docName.value = currentDoc.docName;
+                markdownContent.value = currentDoc.content;
+            }
+        } else {
+            addWelcomeDoc(data);
+            renderDocList(allUserDocs);
+            if (allUserDocs[0]) {
+                docName.value = allUserDocs[0].docName;
+                markdownContent.value = allUserDocs[0].content;
+            }
+        }
+
+        resizeTextArea();
+        showMarkedContent();
+    } catch (error) {
+        console.error('Error populating documents:', error);
+    }
+};
