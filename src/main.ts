@@ -116,3 +116,13 @@ const openMainMenu = (): void => {
 }
 
 openMainMenu();
+
+/**
+ * This section of the code handles the CRUD functionality with Local Storage.
+ * It adds an event listener for 'input' event on the markdownContent.
+ */
+const markdownContent: HTMLTextAreaElement = document.getElementById('markdown-input') as HTMLTextAreaElement,
+    htmlPreview: HTMLElement = document.getElementById('html-preview') as HTMLElement,
+    labelDOcName: HTMLLabelElement = document.querySelector('label[for="doc-name"]') as HTMLLabelElement,
+    docName: HTMLInputElement = document.getElementById('doc-name') as HTMLInputElement;
+
