@@ -186,3 +186,16 @@ interface DocData {
     name: string;
     content: string;
 }
+
+let allUserDocs: UserDoc[] = [];
+let currentIndex: number = 0;
+
+const localStorageKey: "allUserDocs" = 'allUserDocs';
+
+/**
+ * This function saves the documents to Local Storage.
+ * @param {UserDoc[]} docs - The documents to be saved.
+ */
+const saveToLocalStorage = (docs: UserDoc[]): void => {
+    localStorage.setItem(localStorageKey, JSON.stringify(docs));
+};
