@@ -155,9 +155,9 @@ I will definitely like to continue to expand my knowledge on typescript as it gi
 
 ## Acknowledgments
 
-I will like to aknowledge and appreciate my friend Ayuba Isaac for his help in some project especially on the functionality using typescript.
+I will like to aknowledge and appreciate my friend Pascal Ignatius for his help in some areas of the project especially on the functionality using typescript.
 
-Also like to acknowledge ChatGPT for various code syntax
+I will also like to acknowledge ChatGPT for various code syntax
 
 
 
